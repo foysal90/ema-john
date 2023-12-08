@@ -13,23 +13,30 @@ const Cart = ({ cart }) => {
     // eslint-disable-next-line no-const-assign
     total = total + product.price;
     totalShipping += product.shipping;
+    // eslint-disable-next-line no-undef
+    // quantity = quantity + product.quantity;
   }
   const tax = (total * 7) / 100;
   const grandTotal = total + totalShipping + tax;
-  // const {cart} = props;
+
+  //   const {cart} = props;
   return (
     <div className="cart">
       <h1> Order Summary</h1>
 
       <p>Selected Items : {cart.length}</p>
+      
       <p>Total Price : ${total.toFixed(2)}</p>
+      {/* <h5>Quantity : {quantity}</h5> */}
       <p>Totaal Shipping: ${totalShipping.toFixed(2)} </p>
       <p>Tax : ${tax.toFixed(2)}</p>
       <h5>Grand Total :$ {grandTotal.toFixed(2)}</h5>
-      <button className="check-out">
+    
+     <button className="check-out" >
         Check out
         <FontAwesomeIcon className="icon" icon={faArrowRight} />
       </button>
+     
     </div>
   );
 };

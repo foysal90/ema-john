@@ -1,14 +1,14 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from "react";
-import "./Shop.css";
-import Product from "../Product/Product";
+import { addToDb, getShoppingCart } from "../../utility/fakedb";
 import Cart from "../Cart/Cart";
+import Product from "../Product/Product";
+import "./Shop.css";
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
-  // eslint-disable-next-line no-unused-vars
+
   const [cart, setCart] = useState([]);
-  //   cart.push()
 
   useEffect(() => {
     fetch("products.json")
@@ -16,9 +16,26 @@ const Shop = () => {
       .then((data) => setProducts(data));
   }, []);
 
+  useEffect(() => {
+    const storedCart = getShoppingCart();
+    const savedCart = [];
+
+    for (const id in storedCart) {
+      const addedProduct = products.find(product => product.id === id);
+      if (addedProduct) {
+        const quantity = storedCart[id];
+        addedProduct.quantity = quantity;
+        savedCart.push(addedProduct);
+      }
+      console.log("added", addedProduct);
+    }
+    setCart(savedCart);
+  }, [products]);
+
   const handleAddToCart = (product) => {
     const newCart = [...cart, product];
     setCart(newCart);
+    addToDb(product.id);
   };
 
   return (
@@ -34,9 +51,7 @@ const Shop = () => {
       </div>
 
       <div className="cart-container">
-
-        <Cart cart={cart}/>
-        
+        <Cart cart={cart} />
       </div>
     </div>
   );
