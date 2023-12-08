@@ -1,4 +1,4 @@
-.header {
+/* .header {
   height: 80px;
   background-color: #1c2b35;
   display: flex;
@@ -13,4 +13,44 @@ nav.header a {
   text-decoration: none;
   color: white;
   margin-left: 30px;
+} */
+
+.header {
+  height: 80px;
+  background-color: #1c2b35;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+nav.header a {
+  text-decoration: none;
+  color: white;
+  margin-left: 10px;
+}
+
+@media screen and (min-width: 768px) {
+  .header {
+   
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+
+  nav.header a {
+    margin-left: 20px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .header {
+    
+    padding-left: 100px;
+    padding-right: 100px;
+  }
+
+  nav.header a {
+    margin-left: 30px;
+  }
 }

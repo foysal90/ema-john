@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from "react";
-import { addToDb, getShoppingCart } from "../../utility/fakedb";
+import { addToDb,  getShoppingCart } from "../../utility/fakedb";
 import Cart from "../Cart/Cart";
 import Product from "../Product/Product";
 import "./Shop.css";
@@ -33,10 +33,30 @@ const Shop = () => {
   }, [products]);
 
   const handleAddToCart = (product) => {
+    //if u use this code then comments if else statement cart component
+    // let newCart = [];
+    // const exsits = cart.find(pd => pd.id === product.id);
+    // if(!exists){
+    //   product.quantity =1;
+    //   newCart = [...cart, product];
+    // }
+    // else{
+    //   exsits.quantity = exsits.quantity + 1;
+    //   const remaining = cart.filter(pd => pd.id !== product.id);
+    //   newCart = [...remaining, exsits];
+    // }
     const newCart = [...cart, product];
+
     setCart(newCart);
     addToDb(product.id);
+   
   };
+  // const handleRemoveCart = (product) => {
+   
+   
+  //   deleteShoppingCart(product.id)
+  // };
+
 
   return (
     <div className="shop-container">
@@ -46,6 +66,7 @@ const Shop = () => {
             product={product}
             key={product.id}
             handleAddToCart={handleAddToCart}
+            // handleRemoveCart={handleRemoveCart}
           />
         ))}
       </div>
