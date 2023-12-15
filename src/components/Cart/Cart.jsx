@@ -62,13 +62,14 @@
 
 
 // eslint-disable-next-line no-unused-vars
-import React from "react";
+import React, { useState } from "react";
 import "./Cart.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 // eslint-disable-next-line react/prop-types
 const Cart = ({ cart }) => {
+ 
   let total = 0;
   let totalShipping = 0;
   let quantity = 0;
@@ -83,8 +84,12 @@ const Cart = ({ cart }) => {
   const tax = (total * 7) / 100;
   const grandTotal = total + totalShipping + tax;
 
+ 
+
   return (
+   
     <div className="cart">
+       
       <h1> Order Summary</h1>
 
      
@@ -96,6 +101,7 @@ const Cart = ({ cart }) => {
           <p>Name: {product.name}</p>
           <p>Quantity: {product.quantity}</p>
           <img className="pimg" src={product.img} alt={product.name} />
+          
         </div>
       ))}
       <p>Total Price: ${total.toFixed(2)}</p>

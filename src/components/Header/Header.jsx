@@ -1,25 +1,27 @@
 // eslint-disable-next-line no-unused-vars
-import React from 'react';
-import './Header.css'
-import logo from '../../../images/Logo.svg'
-
-
-
+import React from "react";
+import "./Header.css";
+import logo from "../../../images/Logo.svg";
+import { Link } from "react-router-dom";
 
 const Header = () => {
-    return (
-        <nav className='header'>
-            <img src={logo} alt="" />
-           <div className=''>
-           <a href="/shop">shop</a>
-            <a href="/order">order</a>
-            <a href="/inventory">inventory</a>
-            <a href="/login"> Login </a>
-            
-           
-           </div>
-        </nav>
-    );
+  return (
+    <nav className="header">
+     <Link to={'/'}>
+     <img src={logo} alt="" /></Link>
+      <div className="">
+        <Link Link to="/shop">
+          shop
+        </Link>
+        <Link Link to="/order">
+          order
+        </Link>
+        <Link to="/inventory">inventory</Link>
+        <Link to="/signin"> Login </Link>
+        <Link to={'/cart'}>Cart</Link>
+      </div>
+    </nav>
+  );
 };
 
 export default Header;

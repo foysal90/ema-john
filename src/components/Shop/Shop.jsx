@@ -15,7 +15,7 @@ const Shop = () => {
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);
-
+//getting data from database
   useEffect(() => {
     const storedCart = getShoppingCart();
     const savedCart = [];
@@ -72,7 +72,7 @@ const Shop = () => {
       </div>
 
       <div className="cart-container">
-        <Cart cart={cart} />
+      <Cart cart={cart} />
       </div>
     </div>
   );
