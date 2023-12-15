@@ -5,7 +5,6 @@
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
-
 // // eslint-disable-next-line react/prop-types
 // const Cart = ({ cart }) => {
 //     // const {cart} = props;
@@ -24,16 +23,14 @@
 //     totalShipping += product.shipping;
 //     quantity+= product.quantity;
 //     // name = name + product.name;
-  
+
 //   }
 //   const tax = (total * 7) / 100;
 //   const grandTotal = total + totalShipping + tax;
 
-    
 //   return (
 //     <div className="cart">
 //       <h1> Order Summary</h1>
-      
 
 //       <p>Selected Items : {cart.length}</p>
 //       <p> Quantity : {quantity}</p>
@@ -43,23 +40,17 @@
 //       <p>Totaal Shipping: ${totalShipping.toFixed(2)} </p>
 //       <p>Tax : ${tax.toFixed(2)}</p>
 //       <h2>Grand Total :$ {grandTotal.toFixed(2)}</h2>
-    
+
 //      <button className="check-out" >
 //         Check out
 //         <FontAwesomeIcon className="icon" icon={faArrowRight} />
 //       </button>
-     
+
 //     </div>
 //   );
 // };
 
 // export default Cart;
-
-
-
-
-
-
 
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
@@ -69,7 +60,6 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 // eslint-disable-next-line react/prop-types
 const Cart = ({ cart }) => {
- 
   let total = 0;
   let totalShipping = 0;
   let quantity = 0;
@@ -84,15 +74,10 @@ const Cart = ({ cart }) => {
   const tax = (total * 7) / 100;
   const grandTotal = total + totalShipping + tax;
 
- 
-
   return (
-   
     <div className="cart">
-       
       <h1> Order Summary</h1>
 
-     
       <p>Selected Items: {cart.length}</p>
       <p> Total Quantity: {quantity}</p>
       {/* Display product names and images */}
@@ -100,8 +85,7 @@ const Cart = ({ cart }) => {
         <div key={product.id}>
           <p>Name: {product.name}</p>
           <p>Quantity: {product.quantity}</p>
-          <img className="pimg" src={product.img} alt={product.name} />
-          
+          {/* <img className="pimg" src={product.img} alt={product.name} /> */}
         </div>
       ))}
       <p>Total Price: ${total.toFixed(2)}</p>

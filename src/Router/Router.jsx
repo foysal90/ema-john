@@ -7,7 +7,8 @@ import CartProduct from '../components/CartProduct/CartProduct';
 import Login from '../components/Login/Login';
 import Inventory from '../components/Inventory/Inventory';
 import Order from '../components/Order/Order';
-import Cart from '../components/Cart/Cart';
+
+import cartProductsLoader from '../loaders/cartProductsLoader';
 
 const Router = () => {
     const router = createBrowserRouter([
@@ -26,10 +27,11 @@ const Router = () => {
                 },
                 {
                     path:'/cart',
-                    element: <Cart />
+                    element: <CartProduct />,
+                    loader: cartProductsLoader
                 },
                 {
-                    path:'/signin',
+                    path:'/signIn',
                     element:<Login/>
                 },
                 {
@@ -38,7 +40,8 @@ const Router = () => {
                 },
                 {
                     path:'/order',
-                    element:<Order/>
+                    element: <Order/>,
+                    loader: cartProductsLoader
                 }
             ]
         }
