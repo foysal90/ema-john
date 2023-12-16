@@ -56,7 +56,7 @@
 import React, { useState } from "react";
 import "./Cart.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
 // eslint-disable-next-line react/prop-types
 const Cart = ({ cart }) => {
@@ -93,8 +93,12 @@ const Cart = ({ cart }) => {
       <p>Tax: ${tax.toFixed(2)}</p>
       <h2>Grand Total: $ {grandTotal.toFixed(2)}</h2>
 
+      <button className="clear-cart">
+        Clear Cart
+        <FontAwesomeIcon className="icon" icon={faTrashAlt} />
+      </button>
       <button className="check-out">
-        Check out
+        Review Order
         <FontAwesomeIcon className="icon" icon={faArrowRight} />
       </button>
     </div>

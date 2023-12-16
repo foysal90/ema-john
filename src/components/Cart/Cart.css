@@ -9,12 +9,27 @@
 
 .check-out {
     background-color: rgba(0, 128, 0, 0.671);
-    padding: 10px;
-    width: 100%;
+    padding: 5px;
+    width: 90%;
     font-size: large;
+    margin-top: 10px;
     color: white;
     border-radius: 10px;
     border-style: none;
+}
+.clear-cart{
+    width: 90%;
+    display: flex;
+    margin: 10px auto;
+    justify-content: space-between;
+    align-items: center;
+    padding: 7px;
+    border-radius: 10px;
+    border-style: none;
+    background-color: #FF3030;
+    color: white;
+    font-size: large;
+   
 }
 
 .pimg {
