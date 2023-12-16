@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Cart from "../Cart/Cart";
 import { useLoaderData } from "react-router-dom";
 import ReviewItem from "../ReviewItem/ReviewItem";
-import { removeFromDb } from "../../utility/fakedb";
+import { deleteShoppingCart, removeFromDb } from "../../utility/fakedb";
 import "./Order.css";
 
 const Order = () => {
@@ -13,6 +13,12 @@ const Order = () => {
     setCart(remaining);
     removeFromDb(id);
   };
+
+  const handleClearCart = ()=> {
+    setCart([]);
+    deleteShoppingCart();
+   
+  }
 
   return (
     <div className="shop-container">
@@ -27,7 +33,10 @@ const Order = () => {
       </div>
 
       <div className="cart-container">
-        <Cart cart={cart} />
+        <Cart 
+        cart={cart} 
+        handleClearCart={handleClearCart}
+        />
       </div>
     </div>
   );

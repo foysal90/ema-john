@@ -1,65 +1,12 @@
-/* eslint-disable react/prop-types */
-// // eslint-disable-next-line no-unused-vars
-// import React from "react";
-// import "./Cart.css";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-
-// // eslint-disable-next-line react/prop-types
-// const Cart = ({ cart }) => {
-//     // const {cart} = props;
-//   let total = 0;
-//   let totalShipping = 0;
-//   let quantity = 0;
-// //   let name =[];
-
-//   for (const product of cart) {
-
-//     // if(quantity.product === 0){
-//     //     product.quantity = 1;
-//     // }
-//     product.quantity = product.quantity || 1;
-//     total = total + product.price * product.quantity;
-//     totalShipping += product.shipping;
-//     quantity+= product.quantity;
-//     // name = name + product.name;
-
-//   }
-//   const tax = (total * 7) / 100;
-//   const grandTotal = total + totalShipping + tax;
-
-//   return (
-//     <div className="cart">
-//       <h1> Order Summary</h1>
-
-//       <p>Selected Items : {cart.length}</p>
-//       <p> Quantity : {quantity}</p>
-//       {/* <p>Name : {name}</p> */}
-//       <p>Total Price : ${total.toFixed(2)}</p>
-//       {/* <h5>Quantity : {quantity}</h5> */}
-//       <p>Totaal Shipping: ${totalShipping.toFixed(2)} </p>
-//       <p>Tax : ${tax.toFixed(2)}</p>
-//       <h2>Grand Total :$ {grandTotal.toFixed(2)}</h2>
-
-//      <button className="check-out" >
-//         Check out
-//         <FontAwesomeIcon className="icon" icon={faArrowRight} />
-//       </button>
-
-//     </div>
-//   );
-// };
-
-// export default Cart;
-
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
 import "./Cart.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
-const Cart = ({ cart }) => {
+const Cart = ({ cart, handleClearCart }) => {
   let total = 0;
   let totalShipping = 0;
   let quantity = 0;
@@ -93,14 +40,16 @@ const Cart = ({ cart }) => {
       <p>Tax: ${tax.toFixed(2)}</p>
       <h2>Grand Total: $ {grandTotal.toFixed(2)}</h2>
 
-      <button className="clear-cart">
-        Clear Cart
+      <button onClick={handleClearCart} className="clear-cart">
+       <span>  Clear Cart </span>
         <FontAwesomeIcon className="icon" icon={faTrashAlt} />
       </button>
+      <Link to={'/order'}>
       <button className="check-out">
         Review Order
         <FontAwesomeIcon className="icon" icon={faArrowRight} />
       </button>
+      </Link>
     </div>
   );
 };

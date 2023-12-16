@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from "react";
-import { addToDb,  getShoppingCart } from "../../utility/fakedb";
+import { addToDb,  deleteShoppingCart,  getShoppingCart } from "../../utility/fakedb";
 import Cart from "../Cart/Cart";
 import Product from "../Product/Product";
 import "./Shop.css";
@@ -51,11 +51,12 @@ const Shop = () => {
     addToDb(product.id);
    
   };
-  // const handleRemoveCart = (product) => {
+  const handleClearCart = () => {
+    setCart([])
    
    
-  //   deleteShoppingCart(product.id)
-  // };
+    deleteShoppingCart()
+  };
 
 
   return (
@@ -72,7 +73,10 @@ const Shop = () => {
       </div>
 
       <div className="cart-container">
-      <Cart cart={cart} />
+      <Cart
+       cart={cart}
+       handleClearCart={handleClearCart}
+        />
       </div>
     </div>
   );
