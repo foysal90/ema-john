@@ -6,7 +6,7 @@ import { faArrowRight, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
-const Cart = ({ cart, handleClearCart }) => {
+const Cart = ({ cart, handleClearCart, children }) => {
   let total = 0;
   let totalShipping = 0;
   let quantity = 0;
@@ -44,12 +44,9 @@ const Cart = ({ cart, handleClearCart }) => {
        <span>  Clear Cart </span>
         <FontAwesomeIcon className="icon" icon={faTrashAlt} />
       </button>
-      <Link to={'/order'}>
-      <button className="check-out">
-        Review Order
-        <FontAwesomeIcon className="icon" icon={faArrowRight} />
-      </button>
-      </Link>
+     
+     
+      {children }
     </div>
   );
 };

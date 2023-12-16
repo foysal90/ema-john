@@ -1,9 +1,16 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from "react";
-import { addToDb,  deleteShoppingCart,  getShoppingCart } from "../../utility/fakedb";
+import {
+  addToDb,
+  deleteShoppingCart,
+  getShoppingCart,
+} from "../../utility/fakedb";
 import Cart from "../Cart/Cart";
 import Product from "../Product/Product";
 import "./Shop.css";
+import { Link } from "react-router-dom";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
@@ -15,13 +22,13 @@ const Shop = () => {
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);
-//getting data from database
+  //getting data from database
   useEffect(() => {
     const storedCart = getShoppingCart();
     const savedCart = [];
 
     for (const id in storedCart) {
-      const addedProduct = products.find(product => product.id === id);
+      const addedProduct = products.find((product) => product.id === id);
       if (addedProduct) {
         const quantity = storedCart[id];
         addedProduct.quantity = quantity;
@@ -49,15 +56,12 @@ const Shop = () => {
 
     setCart(newCart);
     addToDb(product.id);
-   
   };
   const handleClearCart = () => {
-    setCart([])
-   
-   
-    deleteShoppingCart()
-  };
+    setCart([]);
 
+    deleteShoppingCart();
+  };
 
   return (
     <div className="shop-container">
@@ -73,10 +77,14 @@ const Shop = () => {
       </div>
 
       <div className="cart-container">
-      <Cart
-       cart={cart}
-       handleClearCart={handleClearCart}
-        />
+        <Cart cart={cart} handleClearCart={handleClearCart}>
+          <Link to={"/order"}>
+            <button className="check-out">
+              Review Order
+              <FontAwesomeIcon className="icon" icon={faArrowRight} />
+            </button>
+          </Link>
+        </Cart>
       </div>
     </div>
   );
