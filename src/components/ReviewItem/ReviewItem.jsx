@@ -3,8 +3,10 @@ import "./ReviewItem.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {  faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
-const ReviewItem = ({ product }) => {
-  const { name, quantity, price, img, shipping } = product;
+// eslint-disable-next-line react/prop-types, no-unused-vars
+const ReviewItem = ({ product, handleDeleteBtn }) => {
+  // eslint-disable-next-line react/prop-types
+  const { name, quantity, price, img, shipping,id } = product;
   return (
     <div className="review">
       <img src={img} alt="" />
@@ -18,9 +20,9 @@ const ReviewItem = ({ product }) => {
        
       </div>
       
-        <button className="btn-delete">
+        <button onClick={()=>handleDeleteBtn(id)} className="btn-delete">
 
-        <FontAwesomeIcon className="delete-icon" icon={faTrashAlt} />
+        <FontAwesomeIcon  className="delete-icon" icon={faTrashAlt} />
         </button>
       
    
