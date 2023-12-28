@@ -1,7 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProviders";
 
 const Login = () => {
+  const {} = useContext(AuthContext)
+
+  const handleSignIn =(e) => {
+    e.preventDefault()
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email,password)
+  }
 
   const registerAccount = `Don't Have an Account?`
   return (
@@ -15,7 +25,7 @@ const Login = () => {
             </p>
           </div>
           <div className="card  w-full shadow-2xl bg-base-100">
-            <form className="card-body ">
+            <form onSubmit={handleSignIn} className="card-body ">
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
@@ -23,6 +33,7 @@ const Login = () => {
                 <input
                   type="email"
                   placeholder="email"
+                  name='email'
                   className="input input-bordered"
                   required
                 />
@@ -34,6 +45,7 @@ const Login = () => {
                 <input
                   type="password"
                   placeholder="password"
+                  name='password'
                   className="input input-bordered"
                   required
                 />
