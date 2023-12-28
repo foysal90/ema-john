@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 
 const Login = () => {
-  const {} = useContext(AuthContext)
+  const {logIn} = useContext(AuthContext)
 
   const handleSignIn =(e) => {
     e.preventDefault()
@@ -17,9 +17,9 @@ const Login = () => {
   return (
     <div>
       <div className="hero min-h-screen w-full bg-base-200">
-        <div className="hero-content flex-col lg:flex-row-cols">
+        <div className="hero-content flex-col ">
           <div className="text-center lg:text-center">
-            <h1 className="text-5xl font-bold">Login now!</h1>
+            <h1 className="text-5xl font-bold">Please Login now!</h1>
             <p className="py-6">
               <h3>Welcome Back</h3>
             </p>
@@ -56,7 +56,7 @@ const Login = () => {
                 </label>
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-primary">Login</button>
+                <button className="btn bg-indigo-600 text-indigo-100 hover:bg-indigo-700">Login</button>
               </div>
             </form>
             <p className="text-center">{registerAccount}</p> <Link to='/register' className="text-center">
