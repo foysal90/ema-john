@@ -9,8 +9,8 @@ import { AuthContext } from "../../providers/AuthProviders";
 import toast from "react-hot-toast";
 
 const Header = () => {
-  const [search, setSearch] = useState('');
-  console.log(search)
+  const [search, setSearch] = useState("");
+  console.log(search);
 
   const { logOut, user } = useContext(AuthContext);
 
@@ -19,18 +19,23 @@ const Header = () => {
       toast.success("logged Out");
     });
   };
-  const inputSearch = (e) => {
-
-    setSearch(e.target.value);
-  };
+  // const inputSearch = (e) => {
+  //   setSearch(e.target.value);
+  // };
   return (
-    <div className="navbar bg-indigo-400 fixed top-0 z-10 mr-20">
+    <div className="navbar bg-indigo-400  z-10 ">
       <div className="flex-1">
         <Link to={"/"} className="btn btn-ghost text-xl">
           <img src={logo} alt="" />
         </Link>
       </div>
-      <input type="search" value={search} onChange={inputSearch} placeholder="Search" className="input input-bordered w-24 md:w-auto" /> 
+      {/* <input
+        type="search"
+        value={search}
+        onChange={inputSearch}
+        placeholder="Search"
+        className="input input-bordered w-24 md:w-auto"
+      /> */}
 
       <div className="flex-none">
         <ul className="menu menu-horizontal px-1">
@@ -42,6 +47,7 @@ const Header = () => {
           <li>
             <Link to="/inventory">inventory</Link>
           </li>
+          <li>{user && <Link to="/checkout">Check Out</Link>}</li>
 
           <li>
             <details>
@@ -51,7 +57,7 @@ const Header = () => {
                   //  <img className="w-10 rounded-full" src={user.photoUrl}  alt="loading" />
                 }
               </summary>
-              <ul className="px-5 bg-indigo-700 absolute right-0 text-white font-semibold top-7">
+              <ul className="px-5 bg-indigo-700 absolute right-0 z-10 text-white font-semibold top-7">
                 <li>
                   {user && user.email}
                   {/* <Link>profile</Link> */}
@@ -59,7 +65,7 @@ const Header = () => {
                 </li>
                 <li>
                   {user ? (
-                    <button onClick={handleSingedOut}>Sign out</button>
+                    <button  onClick={handleSingedOut}>Sign out</button>
                   ) : (
                     <Link to="/signIn">Login</Link>
                   )}

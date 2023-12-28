@@ -4,7 +4,7 @@ import { AuthContext } from "../../providers/AuthProviders";
 import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
-  const { logIn, setUser } = useContext(AuthContext);
+  const { logIn, setUser,user } = useContext(AuthContext);
 
 
   const handleSignIn = (e) => {
@@ -19,6 +19,7 @@ const Login = () => {
         setUser(newUser);
         console.log(newUser);
         toast.success("Successfully logged In");
+        form.reset()
       })
       .catch((error) => {
         console.log(error.message);
@@ -70,9 +71,11 @@ const Login = () => {
                 </label>
               </div>
               <div className="form-control mt-6">
-                <button className="btn bg-indigo-600 text-indigo-100 hover:bg-indigo-700">
+             
+               <button className="btn bg-indigo-600 text-indigo-100 hover:bg-indigo-700">
                   Login
                 </button>
+          
               </div>
             </form>
             <p className="text-center">{registerAccount}</p>{" "}

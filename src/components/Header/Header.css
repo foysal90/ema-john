@@ -16,7 +16,7 @@ nav.header a {
 } */
 
 .header {
-  height: 80px;
+  height: 10px;
   background-color: #1c2b35;
   display: flex;
   justify-content: space-between;
