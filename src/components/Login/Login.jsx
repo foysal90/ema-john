@@ -1,6 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Login = () => {
+
+  const registerAccount = `Don't Have an Account?`
   return (
     <div>
       <div className="hero min-h-screen w-full bg-base-200">
@@ -11,8 +14,8 @@ const Login = () => {
               <h3>Welcome Back</h3>
             </p>
           </div>
-          <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-            <form className="card-body">
+          <div className="card  w-full shadow-2xl bg-base-100">
+            <form className="card-body ">
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
@@ -35,15 +38,18 @@ const Login = () => {
                   required
                 />
                 <label className="label">
-                  <a href="#" className="label-text-alt link link-hover">
+                  <Link href="#" className="label-text-alt link link-hover">
                     Forgot password?
-                  </a>
+                  </Link>
                 </label>
               </div>
               <div className="form-control mt-6">
                 <button className="btn btn-primary">Login</button>
               </div>
             </form>
+            <p className="text-center">{registerAccount}</p> <Link to='/register' className="text-center">
+            <button className="btn btn-link text-blue-500">Register</button>
+            </Link>
           </div>
         </div>
       </div>
