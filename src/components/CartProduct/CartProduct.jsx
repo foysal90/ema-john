@@ -3,7 +3,7 @@ import Cart from '../Cart/Cart';
 import { useLoaderData } from 'react-router-dom';
 
 const CartProduct = () => {
-  const cart = useLoaderData()
+  // const cart = useLoaderData()
     return (
         <div className='shop-container'>
         <div className="products-container">
@@ -11,7 +11,7 @@ const CartProduct = () => {
        </div>
  
        <div className="cart-container">
-         <Cart cart={cart}/>
+         {/* <Cart cart={cart}/> */}
        </div>
  
      </div>

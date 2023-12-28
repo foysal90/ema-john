@@ -25,8 +25,8 @@ const Cart = ({ cart, handleClearCart, children }) => {
     <div className="cart">
       <h1> Order Summary</h1>
 
-      <p>Selected Items: {cart.length}</p>
-      <p> Total Quantity: {quantity}</p>
+      <p>Qty : {quantity}</p>
+      <p className="qty"> {quantity}</p>
       {/* Display product names and images */}
       {cart.map((product) => (
         <div key={product.id}>

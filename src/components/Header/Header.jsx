@@ -3,6 +3,8 @@ import React from "react";
 import "./Header.css";
 import logo from "../../../images/Logo.svg";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
   return (
@@ -13,12 +15,14 @@ const Header = () => {
         <Link Link to="/shop">
           shop
         </Link>
-        <Link Link to="/order">
+        {/* <Link Link to="/order">
           order
-        </Link>
+        </Link> */}
         <Link to="/inventory">inventory</Link>
         <Link to="/signIn"> Login </Link>
-        <Link to={'/cart'}>Cart</Link>
+        <Link to={'/order'}>
+        <FontAwesomeIcon className="w-8 h-8" icon={faShoppingCart} />
+          </Link>
       </div>
     </nav>
   );

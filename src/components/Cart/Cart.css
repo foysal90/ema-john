@@ -35,3 +35,11 @@
 .pimg {
     width: 100px;
 }
+
+.qty {
+    position: fixed !important;
+    top: 20px !important;
+    right: 110px;
+    color: #0a0707;
+    font-size: small;
+}

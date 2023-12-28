@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {  faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
 // eslint-disable-next-line react/prop-types, no-unused-vars
-const ReviewItem = ({ product, handleDeleteBtn }) => {
+const  ReviewItem = ({ product, handleDeleteBtn }) => {
   // eslint-disable-next-line react/prop-types
   const { name, quantity, price, img, shipping,id } = product;
   return (

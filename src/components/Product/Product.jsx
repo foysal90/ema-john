@@ -11,7 +11,7 @@ const Product = (props) => {
 
   
   // eslint-disable-next-line react/prop-types, no-unused-vars
-  const { name, category, price, ratings, seller, img, quantity } = props.product;
+  const { name, category, price, ratings, seller, img, quantity} = props.product;
   
   // eslint-disable-next-line react/prop-types
   const handleAddToCart = props.handleAddToCart;
@@ -20,6 +20,7 @@ const Product = (props) => {
   return (
     <div className="product">
       <img src={img} alt="" />
+      
       <div className="product-info">
         <h3> {name} </h3>
         <h4> {category}</h4>

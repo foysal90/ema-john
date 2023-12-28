@@ -5,7 +5,7 @@
   border: 1px solid rgb(208, 204, 204);
   border-radius: 10px;
   padding: 20px;
-  box-shadow: 70px 70px -10px rgb(213, 210, 210);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .product img {
@@ -13,6 +13,7 @@
   height: 286px;
   margin: 7px;
   border-radius: 8px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .btn-cart {

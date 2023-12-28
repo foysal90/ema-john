@@ -38,7 +38,7 @@ const Order = () => {
           <Link to={"/checkout"}>
             <button className="check-out">
               Checkout Now 
-              <FontAwesomeIcon className="icon" icon={faArrowRight} />
+            
             </button>
           </Link>
         </Cart>
