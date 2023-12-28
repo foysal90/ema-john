@@ -1,21 +1,34 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
+import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
-  const {logIn} = useContext(AuthContext)
+  const { logIn, setUser } = useContext(AuthContext);
 
-  const handleSignIn =(e) => {
-    e.preventDefault()
+  const handleSignIn = (e) => {
+    e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email,password)
-  }
+    console.log(email, password);
+    logIn(email, password)
+      .then((result) => {
+        const newUser = result.user;
+        setUser(newUser);
+        console.log(newUser);
+        toast.success("Successfully logged In");
+      })
+      .catch((error) => {
+        console.log(error.message);
+        toast.error(error.message);
+      });
+  };
 
-  const registerAccount = `Don't Have an Account?`
+  const registerAccount = `Don't Have an Account?`;
   return (
     <div>
+      <Toaster />
       <div className="hero min-h-screen w-full bg-base-200">
         <div className="hero-content flex-col ">
           <div className="text-center lg:text-center">
@@ -33,7 +46,7 @@ const Login = () => {
                 <input
                   type="email"
                   placeholder="email"
-                  name='email'
+                  name="email"
                   className="input input-bordered"
                   required
                 />
@@ -45,7 +58,7 @@ const Login = () => {
                 <input
                   type="password"
                   placeholder="password"
-                  name='password'
+                  name="password"
                   className="input input-bordered"
                   required
                 />
@@ -56,11 +69,14 @@ const Login = () => {
                 </label>
               </div>
               <div className="form-control mt-6">
-                <button className="btn bg-indigo-600 text-indigo-100 hover:bg-indigo-700">Login</button>
+                <button className="btn bg-indigo-600 text-indigo-100 hover:bg-indigo-700">
+                  Login
+                </button>
               </div>
             </form>
-            <p className="text-center">{registerAccount}</p> <Link to='/register' className="text-center">
-            <button className="btn btn-link text-blue-500">Register</button>
+            <p className="text-center">{registerAccount}</p>{" "}
+            <Link to="/register" className="text-center">
+              <button className="btn btn-link text-blue-500">Register</button>
             </Link>
           </div>
         </div>
