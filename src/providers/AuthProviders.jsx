@@ -6,7 +6,9 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
+  updateProfile,
 } from "firebase/auth";
+import toast, { Toaster } from "react-hot-toast";
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
@@ -25,6 +27,24 @@ const AuthProviders = ({ children }) => {
     return signOut(auth)
   }
 
+  const updateUserData = (user, name) => {
+    updateProfile(user, {
+      displayName: name
+     
+
+    })
+    .then(() => {
+      toast.success('user name updated')
+      console.log("user name updated")
+
+    })
+    .catch(error => {
+      toast.error(error.message)
+      console.log(error.message)
+    })
+
+  }
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
@@ -40,9 +60,13 @@ const AuthProviders = ({ children }) => {
     logIn,
     logOut,
     setUser,
+    updateUserData
   };
   return (
-    <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
+    
+    <AuthContext.Provider value={authInfo}>{children}
+    <Toaster/>
+    </AuthContext.Provider>
   );
 };
 

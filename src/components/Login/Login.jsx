@@ -6,6 +6,7 @@ import toast, { Toaster } from "react-hot-toast";
 const Login = () => {
   const { logIn, setUser } = useContext(AuthContext);
 
+
   const handleSignIn = (e) => {
     e.preventDefault();
     const form = e.target;

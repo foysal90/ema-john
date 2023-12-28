@@ -17,6 +17,7 @@ const Shop = () => {
 
   const [cart, setCart] = useState([]);
 
+
   useEffect(() => {
     fetch("products.json")
       .then((res) => res.json())
@@ -63,8 +64,10 @@ const Shop = () => {
     deleteShoppingCart();
   };
 
+
   return (
     <div className="shop-container">
+   
       <div className="products-container">
         {products.map((product) => (
           <Product

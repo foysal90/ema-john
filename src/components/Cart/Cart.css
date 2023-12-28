@@ -3,7 +3,7 @@
     padding: 25px;
     text-align: center;
     position: sticky;
-    top: 0;
+    top: 100px;
   
 }
 
@@ -36,10 +36,11 @@
     width: 100px;
 }
 
-.qty {
+/* .qty {
     position: fixed !important;
     top: 20px !important;
-    right: 110px;
-    color: #0a0707;
-    font-size: small;
-}
+    right: 30px;
+    color: #f50808;
+    font-size: medium;
+   z-index: 50;
+} */
