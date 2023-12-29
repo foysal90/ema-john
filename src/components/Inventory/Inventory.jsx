@@ -7,7 +7,7 @@ const Inventory = () => {
       <h1 className="text-black"> inventory coming soon</h1>
 
 
-      <h1> welcome to Inventory </h1>
+      <h1> You must have to be a Registered use to visit inventory </h1>
 
     </div>
   );

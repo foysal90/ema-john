@@ -2,21 +2,21 @@
 import React, { useContext, useState } from "react";
 import "./Header.css";
 import logo from "../../../images/Logo.svg";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { AuthContext } from "../../providers/AuthProviders";
 import toast from "react-hot-toast";
 
 const Header = () => {
-  const [search, setSearch] = useState("");
-  console.log(search);
+  const navigate = useNavigate();
 
   const { logOut, user } = useContext(AuthContext);
 
   const handleSingedOut = () => {
     logOut().then(() => {
       toast.success("logged Out");
+      navigate('/')
     });
   };
   // const inputSearch = (e) => {

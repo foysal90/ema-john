@@ -39,17 +39,12 @@ const Product = (props) => {
       >
         Add To Cart
         <FontAwesomeIcon className="icon" icon={faShoppingCart} />
-      </button>
-     
-      {/* <button
-        onClick={() => {
-          handleRemoveCart(props.product);
-        }}
-        className="btn-cart"
-      >
-        Remove
         
-      </button> */}
+        
+      </button>
+      
+     
+    
 
       
      

@@ -26,6 +26,7 @@ const AuthProviders = ({ children }) => {
 
   const logOut =()=> {
     return signOut(auth)
+    
   }
 
   const updateUserData = (user, name) => {
@@ -45,14 +46,16 @@ const AuthProviders = ({ children }) => {
     })
 
   }
-
+// observer user auth state
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       setLoading(false)
     });
+
+    // stop observing while unmounting
     return () => {
-      unsubscribe();
+      return unsubscribe();
     };
   }, []);
 

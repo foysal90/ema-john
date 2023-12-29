@@ -1,12 +1,12 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 import toast, { Toaster } from "react-hot-toast";
 
 const Register = () => {
   const [error, setError] = useState("");
   const { createUser, setUser, updateUserData } = useContext(AuthContext);
-
+ const navigate = useNavigate();
   const handleRegister = (e) => {
     e.preventDefault();
     setError("");
@@ -16,6 +16,7 @@ const Register = () => {
     const password = form.password.value;
     const confirm = form.confirm.value;
     console.log(name, email, password, confirm);
+    setError("");
     if (password !== confirm) {
       setError("Your password did not match");
 
@@ -40,6 +41,11 @@ const Register = () => {
       setError("please add at least one @#$%^&* Character  in your password");
       return;
     }
+    else if (password ==='password' || password ==='Password@123' ) {
+      setError("Your password can not be password")
+      return;
+      
+    }
 
     createUser(email, password)
       .then((result) => {
@@ -47,6 +53,7 @@ const Register = () => {
         console.log(newUser);
         setUser(newUser);
         toast.success("User has been Created successfully");
+        navigate('/shop')
         form.reset();
 
         updateUserData(result.user, name);

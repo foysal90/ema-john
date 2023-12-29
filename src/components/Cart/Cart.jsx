@@ -42,6 +42,7 @@ const Cart = ({ cart, handleClearCart, children }) => {
 
       <button onClick={handleClearCart} className="clear-cart">
        <span>  Clear Cart </span>
+       
         <FontAwesomeIcon className="icon" icon={faTrashAlt} />
       </button>
      

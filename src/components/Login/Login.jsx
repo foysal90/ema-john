@@ -1,12 +1,13 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
-  const { logIn, setUser,user } = useContext(AuthContext);
-
-
+  const { logIn, setUser, user } = useContext(AuthContext);
+ const navigate = useNavigate();
+ const location = useLocation()
+ const from = location.state?.from?.pathname;
   const handleSignIn = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -19,7 +20,8 @@ const Login = () => {
         setUser(newUser);
         console.log(newUser);
         toast.success("Successfully logged In");
-        form.reset()
+        navigate(from, {replace: true})
+        form.reset();
       })
       .catch((error) => {
         console.log(error.message);
@@ -71,11 +73,9 @@ const Login = () => {
                 </label>
               </div>
               <div className="form-control mt-6">
-             
-               <button className="btn bg-indigo-600 text-indigo-100 hover:bg-indigo-700">
+                <button className="btn bg-indigo-600 text-indigo-100 hover:bg-indigo-700">
                   Login
                 </button>
-          
               </div>
             </form>
             <p className="text-center">{registerAccount}</p>{" "}
