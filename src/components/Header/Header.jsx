@@ -67,7 +67,10 @@ const Header = () => {
                   {user ? (
                     <button  onClick={handleSingedOut}>Sign out</button>
                   ) : (
+                    <>
                     <Link to="/signIn">Login</Link>
+                    <Link to="/register" >Register</Link>
+                    </>
                   )}
                 </li>
               </ul>
