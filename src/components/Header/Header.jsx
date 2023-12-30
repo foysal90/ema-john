@@ -53,7 +53,18 @@ const Header = () => {
             <details>
               <summary>
                 {
-                  user && user.displayName
+                  user ?
+                   <div>
+                    <p> {user.displayName} </p> <img className="w-10 h-10 rounded-full mx-auto" src={user.photoURL} alt="loading" />
+                    
+                    
+                   
+
+                  </div>
+                  
+                  
+                  
+                  : <p>Welcome</p>
                   //  <img className="w-10 rounded-full" src={user.photoUrl}  alt="loading" />
                 }
               </summary>

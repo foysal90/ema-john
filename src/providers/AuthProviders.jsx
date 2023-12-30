@@ -1,10 +1,12 @@
 import React, { createContext, useEffect, useState } from "react";
 import app from "../firebase/firebase.config";
 import {
+  GoogleAuthProvider,
   createUserWithEmailAndPassword,
   getAuth,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
   updateProfile,
 } from "firebase/auth";
@@ -12,23 +14,33 @@ import toast, { Toaster } from "react-hot-toast";
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
+const googleAuth = new GoogleAuthProvider()
 
 const AuthProviders = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true)
-
+  
+  //creating user with email and password
   const createUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
   const logIn = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
+ 
 
+  //log out 
   const logOut =()=> {
     return signOut(auth)
     
   }
 
+  const googleSignIn = () => {
+    return signInWithPopup(auth, googleAuth)
+  }
+ 
+
+  //updating user
   const updateUserData = (user, name) => {
     updateProfile(user, {
       displayName: name
@@ -36,7 +48,7 @@ const AuthProviders = ({ children }) => {
 
     })
     .then(() => {
-      toast.success('user name updated')
+    
       console.log("user name updated")
 
     })
@@ -66,7 +78,8 @@ const AuthProviders = ({ children }) => {
     logIn,
     logOut,
     setUser,
-    updateUserData
+    updateUserData,
+    googleSignIn
   };
   return (
     

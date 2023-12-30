@@ -5,8 +5,21 @@ import toast, { Toaster } from "react-hot-toast";
 
 const Register = () => {
   const [error, setError] = useState("");
-  const { createUser, setUser, updateUserData } = useContext(AuthContext);
+  const { createUser, setUser, updateUserData,googleSignIn } = useContext(AuthContext);
  const navigate = useNavigate();
+
+
+ const handleGoogleSignIn = ()=> {
+  googleSignIn()
+  .then(result => {
+    const loggedUser = result.user;
+    setUser(loggedUser)
+    toast.success("User has been created")
+  })
+  .catch(error => {
+    toast.error(error.message)
+  })
+ }
   const handleRegister = (e) => {
     e.preventDefault();
     setError("");
@@ -74,6 +87,10 @@ const Register = () => {
           </div>
           <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
             <form onSubmit={handleRegister} className="card-body">
+              <h2 className="text-center font-bold">Want to save Time ?</h2>
+
+            <button className="bg-yellow-400" onClick={handleGoogleSignIn}>Continue with Google</button>
+            <p className="flex justify-center items-center gap-1 "><hr className="w-28 text-cyan-500" /><span className="leading-none">or</span><hr className="w-28" /></p>
               <div className="form-control">
                 <label htmlFor="name" className="label">
                   <span className="label-text">Name</span>
@@ -138,6 +155,7 @@ const Register = () => {
             <Link to="/signin" className="text-center">
               <button className="btn btn-link text-blue-500">Sign In</button>
             </Link>
+
           </div>
         </div>
       </div>

@@ -2,12 +2,25 @@ import React, { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 import toast, { Toaster } from "react-hot-toast";
+import { signInWithPopup } from "firebase/auth";
 
 const Login = () => {
-  const { logIn, setUser, user } = useContext(AuthContext);
- const navigate = useNavigate();
- const location = useLocation()
- const from = location.state?.from?.pathname;
+  const { logIn, setUser, googleSignIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname;
+
+  const handleGoogleSignIn = () => {
+    googleSignIn()
+      .then((result) => {
+        const loggedUser = result.user;
+        toast.success("user logged in ");
+        setUser(loggedUser);
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
   const handleSignIn = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -20,7 +33,7 @@ const Login = () => {
         setUser(newUser);
         console.log(newUser);
         toast.success("Successfully logged In");
-        navigate(from, {replace: true})
+        navigate(from, { replace: true });
         form.reset();
       })
       .catch((error) => {
@@ -43,6 +56,16 @@ const Login = () => {
           </div>
           <div className="card  w-full shadow-2xl bg-base-100">
             <form onSubmit={handleSignIn} className="card-body ">
+              <h2 className="text-center font-bold">Want to save Time ?</h2>
+
+              <button className="bg-yellow-400" onClick={handleGoogleSignIn}>
+                Continue with Google
+              </button>
+              <p className="flex justify-center items-center gap-1 ">
+                <hr className="w-28 text-cyan-500" />
+                <span className="leading-none">or</span>
+                <hr className="w-28" />
+              </p>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
