@@ -5,6 +5,8 @@ import toast, { Toaster } from "react-hot-toast";
 
 const Register = () => {
   const [error, setError] = useState("");
+  const [show, setShow] = useState(false)
+  const [showConfirm, setShowConfirm] = useState(false)
   const { createUser, setUser, updateUserData,googleSignIn } = useContext(AuthContext);
  const navigate = useNavigate();
 
@@ -76,6 +78,9 @@ const Register = () => {
       });
   };
 
+
+
+
   const signAccount = "Already Have an account?";
   return (
     <div>
@@ -114,31 +119,50 @@ const Register = () => {
                   className="input input-bordered"
                   required
                 />
+               
               </div>
               <div className="form-control">
-                <label htmlFor="password" className="label">
+               
+               <label htmlFor="password" className="label">
                   <span className="label-text">Password</span>
                 </label>
-
+                <div className="flex relative ">
                 <input
-                  type="password"
+                  type={show ? "text" : "password"}
                   name="password"
                   placeholder="******"
-                  className="input input-bordered"
+                  className="input input-bordered w-96"
                   required
                 />
+                <p className="absolute top-2 right-2 text-black" onClick={()=> setShow(!show) }>
+                 {
+                 show ? <span>Hide</span>
+                 :
+                 <span>Show</span>
+                 }
+                </p>
+               </div>
               </div>
               <div className="form-control">
                 <label htmlFor="confirm" className="label">
                   <span className="label-text">Confirm Password</span>
                 </label>
+                <div className="flex relative">
                 <input
-                  type="password"
+                  type={showConfirm ? "text" : "password"}
                   name="confirm"
                   placeholder="*******"
-                  className="input input-bordered"
+                  className="input input-bordered w-96"
                   required
                 />
+                <p className="absolute top-2 right-2" onClick={()=> setShowConfirm(!showConfirm)}>
+                  {
+                   showConfirm ? <span>Hide</span>
+                   :
+                   <span>Show</span>
+                  }
+                </p>
+                </div>
                 <label className="label">
                   <Link href="#" className="label-text-alt link link-hover">
                     Forgot password?
