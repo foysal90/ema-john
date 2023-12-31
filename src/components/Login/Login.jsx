@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 import toast, { Toaster } from "react-hot-toast";
-import { signInWithPopup } from "firebase/auth";
 
 const Login = () => {
+  const [show, setShow] = useState(false);
   const { logIn, setUser, googleSignIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -43,6 +43,7 @@ const Login = () => {
   };
 
   const registerAccount = `Don't Have an Account?`;
+
   return (
     <div>
       <Toaster />
@@ -82,13 +83,24 @@ const Login = () => {
                 <label className="label">
                   <span className="label-text">Password</span>
                 </label>
-                <input
-                  type="password"
+               <div className="flex relative ">
+               <input 
+                  type={show ? "text" : "password"}
                   placeholder="password"
                   name="password"
-                  className="input input-bordered"
+                  className="input input-bordered w-96"
                   required
+               
                 />
+                  <p className=" font-bold absolute right-2 top-2" onClick={() => setShow(!show)}>
+                  {show ? (
+                    <span>Hide</span>
+                  ) : (
+                    <span>Show</span>
+                  )}
+                </p>
+               </div>
+                
                 <label className="label">
                   <Link href="#" className="label-text-alt link link-hover">
                     Forgot password?
