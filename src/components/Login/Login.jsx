@@ -5,10 +5,10 @@ import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
   const [show, setShow] = useState(false);
-  const { logIn, setUser, googleSignIn } = useContext(AuthContext);
+  const { logIn, setUser, googleSignIn, githubSignIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname;
+  const from = location.state?.from?.pathname || '/';
 
   const handleGoogleSignIn = () => {
     googleSignIn()
@@ -16,11 +16,25 @@ const Login = () => {
         const loggedUser = result.user;
         toast.success("user logged in ");
         setUser(loggedUser);
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         toast.error(error.message);
       });
   };
+
+  const handleGitSignIn = ()=> {
+    githubSignIn()
+    .then(result => {
+      const loggedUser = result.user;
+      setUser(loggedUser)
+      toast.success('GitHub Auth Granted ')
+      navigate(from, { replace: true });
+    })
+    .catch(error => {
+      toast.error(error.message)
+    })
+  }
   const handleSignIn = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -59,8 +73,12 @@ const Login = () => {
             <form onSubmit={handleSignIn} className="card-body ">
               <h2 className="text-center font-bold">Want to save Time ?</h2>
 
-              <button className="bg-yellow-400" onClick={handleGoogleSignIn}>
+            
+            <button className="bg-yellow-400" onClick={handleGoogleSignIn}>
                 Continue with Google
+              </button>
+              <button className="bg-yellow-400" onClick={handleGitSignIn}>
+                Continue with GitHub
               </button>
               <p className="flex justify-center items-center gap-1 ">
                 <hr className="w-28 text-cyan-500" />
