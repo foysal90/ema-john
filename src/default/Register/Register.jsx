@@ -7,7 +7,7 @@ const Register = () => {
   const [error, setError] = useState("");
   const [show, setShow] = useState(false)
   const [showConfirm, setShowConfirm] = useState(false)
-  const { createUser, setUser, updateUserData,googleSignIn } = useContext(AuthContext);
+  const { user,createUser, setUser, updateUserData,googleSignIn,sendEmailVerificationLink } = useContext(AuthContext);
  const navigate = useNavigate();
 
 
@@ -72,10 +72,15 @@ const Register = () => {
         form.reset();
 
         updateUserData(result.user, name);
+        sendEmailVerificationLink(result.user)
+     
       })
       .catch((error) => {
         toast.error(error.message);
       });
+
+      
+      
   };
 
 

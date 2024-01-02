@@ -35,7 +35,7 @@ const Shop = () => {
         addedProduct.quantity = quantity;
         savedCart.push(addedProduct);
       }
-      console.log("added", addedProduct);
+      // console.log("added", addedProduct);
     }
     setCart(savedCart);
   }, [products]);

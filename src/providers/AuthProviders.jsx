@@ -6,6 +6,7 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   onAuthStateChanged,
+  sendEmailVerification,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
@@ -43,6 +44,17 @@ const AuthProviders = ({ children }) => {
 
   const githubSignIn = ()=> {
     return signInWithPopup(auth, githubAuth)
+  }
+
+  const sendEmailVerificationLink = (user)=> {
+     sendEmailVerification(user)
+    .then(result => {
+      console.log(result)
+      toast.success("an email verification link sent to your email, Please verify")
+    })
+    .catch(error => {
+      toast.error(error.message)
+    })
   }
  
 
@@ -86,7 +98,8 @@ const AuthProviders = ({ children }) => {
     setUser,
     updateUserData,
     googleSignIn,
-    githubSignIn
+    githubSignIn,
+    sendEmailVerificationLink
   };
   return (
     
