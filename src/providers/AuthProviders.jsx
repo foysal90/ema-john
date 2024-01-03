@@ -7,6 +7,9 @@ import {
   getAuth,
   onAuthStateChanged,
   sendEmailVerification,
+
+  sendPasswordResetEmail,
+
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
@@ -56,6 +59,10 @@ const AuthProviders = ({ children }) => {
       toast.error(error.message)
     })
   }
+
+ const emailReset = (email)=> {
+  return sendPasswordResetEmail(auth,email)
+ }
  
 
   //updating user
@@ -99,7 +106,9 @@ const AuthProviders = ({ children }) => {
     updateUserData,
     googleSignIn,
     githubSignIn,
-    sendEmailVerificationLink
+    sendEmailVerificationLink,
+    emailReset
+    
   };
   return (
     
