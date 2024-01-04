@@ -168,11 +168,7 @@ const Register = () => {
                   }
                 </p>
                 </div>
-                <label className="label">
-                  <Link href="#" className="label-text-alt link link-hover">
-                    Forgot password?
-                  </Link>
-                </label>
+                
               </div>
               <p className="text-error">{error}</p>
               <div className="form-control mt-6">

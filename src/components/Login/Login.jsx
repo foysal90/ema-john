@@ -3,14 +3,15 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 import toast, { Toaster } from "react-hot-toast";
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
+import app from "../../firebase/firebase.config";
 
 
-
+const auth = getAuth(app);
 const Login = () => {
   const [show, setShow] = useState(false);
-  const emailRef = useRef();
+  // const emailRef = useRef();
   
-  const { logIn, setUser, googleSignIn, githubSignIn} =
+  const { user, logIn, setUser, googleSignIn, githubSignIn, resetBtn} =
     useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -47,7 +48,7 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
     console.log(email, password);
-    logIn(email, password)
+   logIn(email, password)
       .then((result) => {
         const newUser = result.user;
         setUser(newUser);
@@ -55,7 +56,7 @@ const Login = () => {
         toast.success("Successfully logged In");
         navigate(from, { replace: true });
         form.reset();
-        resetBtn(email);
+        resetBtn(result.email);
         
       })
       .catch((error) => {
@@ -63,24 +64,7 @@ const Login = () => {
         toast.error(error.message);
       });
   };
-  const resetBtn = () => {
-    
-    const emailResetLink = emailRef.current.value;
-    if (!emailResetLink) {
-      alert("please type ur registered email associate with ur account");
-      console.log(emailResetLink);
-      return;
-    }
-    sendPasswordResetEmail(getAuth,emailResetLink)
-      .then((result) => {
-        console.log(result);
-        toast.success("reset email sent");
-      })
-      .catch((error) => {
-        toast.error(error.message);
-        console.log(error.message);
-      });
-  };
+  
 
 
   
@@ -144,7 +128,7 @@ const Login = () => {
                   </p>
                 </div>
 
-                <label className="label">
+                
                   <button
                    
                     onClick={resetBtn}
@@ -152,7 +136,7 @@ const Login = () => {
                   >
                     Forgot password?
                   </button>
-                </label>
+               
               </div>
               <div className="form-control mt-6">
                 <button className="btn bg-indigo-600 text-indigo-100 hover:bg-indigo-700">

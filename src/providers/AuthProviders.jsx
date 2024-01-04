@@ -14,6 +14,14 @@ import {
 
  
 
+  sendPasswordResetEmail,
+
+ 
+
+ 
+
+ 
+
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
@@ -35,15 +43,18 @@ const AuthProviders = ({ children }) => {
   
   //creating user with email and password
   const createUser = (email, password) => {
+    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
   const logIn = (email, password) => {
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
  
 
   //log out 
   const logOut =()=> {
+    setLoading(true)
     return signOut(auth)
     
   }
@@ -57,6 +68,7 @@ const AuthProviders = ({ children }) => {
   }
 
   const sendEmailVerificationLink = (user)=> {
+    setLoading(true)
      sendEmailVerification(user)
     .then(result => {
       console.log(result)
@@ -67,11 +79,34 @@ const AuthProviders = ({ children }) => {
     })
   }
 
+  const resetBtn = (email) => {
+    // const form = e.target;
+    // const email = form.email.value;
+    
+   
+    if (!email) {
+      alert("please type ur registered email associate with ur account");
+      console.log(email);
+      return;
+    }
+   
+    sendPasswordResetEmail(auth,email)
+      .then((result) => {
+        console.log(result);
+        toast.success("reset email sent");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+        console.log(error.message);
+      });
+  };
+
   
  
 
   //updating user
   const updateUserData = (user, name) => {
+    setLoading(true)
     updateProfile(user, {
       displayName: name
      
@@ -112,6 +147,7 @@ const AuthProviders = ({ children }) => {
     googleSignIn,
     githubSignIn,
     sendEmailVerificationLink,
+    resetBtn
   
     
   };
