@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect,  useState } from "react";
 import app from "../firebase/firebase.config";
 import {
   GithubAuthProvider,
@@ -8,7 +8,11 @@ import {
   onAuthStateChanged,
   sendEmailVerification,
 
-  sendPasswordResetEmail,
+ 
+
+ 
+
+ 
 
   signInWithEmailAndPassword,
   signInWithPopup,
@@ -17,14 +21,17 @@ import {
 } from "firebase/auth";
 import toast, { Toaster } from "react-hot-toast";
 
+
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
+
 const googleAuth = new GoogleAuthProvider()
 const githubAuth = new GithubAuthProvider()
 
 const AuthProviders = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true)
+  
   
   //creating user with email and password
   const createUser = (email, password) => {
@@ -60,9 +67,7 @@ const AuthProviders = ({ children }) => {
     })
   }
 
- const emailReset = (email)=> {
-  return sendPasswordResetEmail(auth,email)
- }
+  
  
 
   //updating user
@@ -107,7 +112,7 @@ const AuthProviders = ({ children }) => {
     googleSignIn,
     githubSignIn,
     sendEmailVerificationLink,
-    emailReset
+  
     
   };
   return (

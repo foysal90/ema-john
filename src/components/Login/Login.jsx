@@ -1,7 +1,8 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext,  useRef,  useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 import toast, { Toaster } from "react-hot-toast";
+import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 
 
 
@@ -9,7 +10,7 @@ const Login = () => {
   const [show, setShow] = useState(false);
   const emailRef = useRef();
   
-  const { logIn, setUser, googleSignIn, githubSignIn,emailReset } =
+  const { logIn, setUser, googleSignIn, githubSignIn} =
     useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -62,15 +63,15 @@ const Login = () => {
         toast.error(error.message);
       });
   };
-
-  const resetBtn = (e) => {
+  const resetBtn = () => {
+    
     const emailResetLink = emailRef.current.value;
     if (!emailResetLink) {
       alert("please type ur registered email associate with ur account");
       console.log(emailResetLink);
       return;
     }
-    emailReset(emailResetLink)
+    sendPasswordResetEmail(getAuth,emailResetLink)
       .then((result) => {
         console.log(result);
         toast.success("reset email sent");
@@ -81,6 +82,8 @@ const Login = () => {
       });
   };
 
+
+  
   const registerAccount = `Don't Have an Account?`;
 
   return (
